@@ -35,7 +35,7 @@ for i = 1 : size(des1,1)
    % Check if nearest neighbor has angle less than distRatio times 2nd.
    if (vals(1) < distRatio * vals(2))
  
-       matches(matches_index,:) = [loc1(i,1), loc2(indx(1),1), loc1(i,2), loc2(indx(1),2)];
+       matches(matches_index,:) = [loc1(i,2), loc1(i,1), loc2(indx(1),2) ,loc2(indx(1),1)];
        dist_vals(matches_index) = vals(1)/vals(2);
        matches_index = matches_index + 1;
    
