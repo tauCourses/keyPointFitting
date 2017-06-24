@@ -4,10 +4,11 @@ function [TransformIm] = ComputeProjective(Im, H)
 %H = [1 .2 0; .1 1 0; 0.5 0.2 1]
 
 tform = maketform('projective',H);
-TransformIm = imtransform(Im,tform);
+TransformIm = imtransform(im,tform);
 
-%figure;
-%imshow(TransformIm);
+figure;
+imshow(TransformIm);
 %imwrite(img2, 'D:\output.bmp', 'bmp');
 
 end
+
