@@ -42,7 +42,7 @@
 %                 result in useful models.
 %                 It is assumed that degenfn is a boolean function of
 %                 the form: 
-%                    r = degenfn(x)
+%                  
 %                 It may be that you cannot devise a test for degeneracy in
 %                 which case you should write a dummy function that always
 %                 returns a value of 1 (true) and rely on 'fittingfn' to return
@@ -130,7 +130,7 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
     
     [rows, npts] = size(x);
     
-    p = 0.99;         % Desired probability of choosing at least one sample
+    p = 0.6;%99;         % Desired probability of choosing at least one sample
                       % free from outliers (probably should be a parameter)
 
     bestM = NaN;      % Sentinel value allowing detection of solution failure.
