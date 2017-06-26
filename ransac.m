@@ -127,7 +127,7 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
     if nargin < 9; maxTrials = 1000;    end;
     if nargin < 8; maxDataTrials = 100; end;
     if nargin < 7; feedback = 0;        end;
-    maxDataTrials
+    
     [rows, npts] = size(x);
     
     p = 0.99;         % Desired probability of choosing at least one sample
