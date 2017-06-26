@@ -120,17 +120,17 @@
 
 function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ...
                                maxDataTrials, maxTrials)
-
+   
     % Test number of parameters
     error ( nargchk ( 6, 9, nargin ) );
     
     if nargin < 9; maxTrials = 1000;    end;
     if nargin < 8; maxDataTrials = 100; end;
     if nargin < 7; feedback = 0;        end;
-    
+    maxDataTrials
     [rows, npts] = size(x);
     
-    p = 0.6;%99;         % Desired probability of choosing at least one sample
+    p = 0.99;         % Desired probability of choosing at least one sample
                       % free from outliers (probably should be a parameter)
 
     bestM = NaN;      % Sentinel value allowing detection of solution failure.
@@ -139,13 +139,14 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
     N = 1;            % Dummy initialisation for number of trials.
     
     while N > trialcount
-        
+         'hi2'
         % Select at random s datapoints to form a trial model, M.
         % In selecting these points we have to check that they are not in
         % a degenerate configuration.
         degenerate = 1;
         count = 1;
         while degenerate
+            'hi3'
             % Generate s random indicies in the range 1..npts
             % (If you do not have the statistics toolbox with randsample(),
             % use the function RANDOMSAMPLE from my webpage)
@@ -156,19 +157,21 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
             end
 
             % Test that these points are not a degenerate configuration.
-            degenerate = feval(degenfn, x(:,ind));
+            degenerate = feval(degenfn, x(:,ind))
             
             if ~degenerate
+             
                 % Fit model to this random selection of data points.
                 % Note that M may represent a set of models that fit the data in
                 % this case M will be a cell array of models
-                M = feval(fittingfn, x(:,ind));
+                M = feval(fittingfn, x(:,ind))
                 
                 % Depending on your problem it might be that the only way you
                 % can determine whether a data set is degenerate or not is to
                 % try to fit a model and see if it succeeds.  If it fails we
                 % reset degenerate to true.
                 if isempty(M)
+                     'hi4'
                     degenerate = 1;
                 end
             end
@@ -180,7 +183,7 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
                 break
             end
         end
-        
+        'hi5'
         % Once we are out here we should have some kind of model...
         % Evaluate distances between points and model returning the indices
         % of elements in x that are inliers.  Additionally, if M is a cell
@@ -193,6 +196,7 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
         ninliers = length(inliers);
         
         if ninliers > bestscore    % Largest set of inliers so far...
+            'fds'
             bestscore = ninliers;  % Record data for this model
             bestinliers = inliers;
             bestM = M;
@@ -208,9 +212,12 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
         
         trialcount = trialcount+1;
         if feedback
+           
             fprintf('trial %d out of %d         \r',trialcount, ceil(N));
         end
-
+         'hi6'
+         trialcount
+         maxTrials
         % Safeguard against being stuck in this loop forever
         if trialcount > maxTrials
             warning( ...
@@ -219,7 +226,7 @@ function [M, inliers] = ransac(x, fittingfn, distfn, degenfn, s, t, feedback, ..
             break
         end
     end
-    
+    'hi7'
     if feedback, fprintf('\n'); end
     
     if ~isnan(bestM)   % We got a solution
