@@ -1,0 +1,12 @@
+*.pgm
+*.asv
+*.h
+*.c
+*.pdf
+*.jpg
+*.exe
+*.key
+Makefile
+README
+sift
+LICENSE
