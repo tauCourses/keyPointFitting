@@ -1,5 +1,5 @@
-firstAddress = 'D:\Tel aviv university\Graphics\Assignment3\left.pgm';
-secondAddress =  'D:\Tel aviv university\Graphics\Assignment3\example.pgm';
+firstAddress = 'D:\targil 3\left.pgm';
+secondAddress =  'D:\targil 3\example.pgm';
 minGroup = 10;
 inlierTrashold = 0.5;
 
@@ -13,7 +13,7 @@ imwrite(afterImg, secondAddress);
 
 computedH = RANSAC_Wrapper(matches,@fittingfn,@myDistfn,@degenfn,minGroup,inlierTrashold,0,100,1000);
 
-calcImg = ComputeProjective(img1, computedH);
+calcImg = ComputeProjective(oriImg, computedH);
 diffImg = appendimages(afterImg,calcImg);
 
 [pnts_gt,pnts_computed] = ComputeTestPoints(H,computedH);
