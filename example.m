@@ -1,7 +1,7 @@
 firstAddress = 'D:\targil 3\left.pgm';
 secondAddress =  'D:\targil 3\example.pgm';
-minGroup = 10;
-inlierTrashold = 0.5;
+minGroup = 4;
+inlierTrashold = 0.02;
 
 H=[1 .2 0; .1 1 0; 0.5 0.2 1];
 

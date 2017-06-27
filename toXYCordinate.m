@@ -1,4 +1,5 @@
 function [points] = toXYCordinate(originalPoints)
+    size(originalPoints,2)
     if size(originalPoints, 2) == 2
         points = originalPoints;
         return;

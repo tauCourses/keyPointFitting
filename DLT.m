@@ -19,8 +19,9 @@ T2scale = [sqrt(2)/averageLengthPoints2,0,0; 0,sqrt(2)/averageLengthPoints2,0; 0
 T2normalize = T2scale*T2translate;
 T2 = (T2normalize*T2')';
 
-%T1
-%T2
+
+%T1normalize
+%T2normalize
 
 for i = 1:size(matches,1)
     start = 2*i - 1;
@@ -38,6 +39,8 @@ H(1,:) = v(1:3,end)';
 H(2,:) = v(4:6,end)';
 H(3,:) = v(7:9,end)';
 
-H = (inv(T2normalize)*H*T1normalize)';
+%inv(T2normalize)
+
+H = (T2normalize \ H * T1normalize)';
 
 
