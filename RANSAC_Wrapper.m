@@ -4,4 +4,4 @@ function [H_ransac] = RANSAC_Wrapper(matches, fittingfn,distfn, degenfn, s, t, f
 tranAndNormalMatches = (matches)'; 
 
 [H_ransac,inliners] = ransac(tranAndNormalMatches,fittingfn,distfn,degenfn, s, t, feedback, maxDataTrials,maxTrials);
-inliners = inliners/size(matches,1)
+inliners = size(inliners,2)/size(matches,1)

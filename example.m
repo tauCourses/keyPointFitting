@@ -1,7 +1,7 @@
 firstAddress = 'D:\Tel aviv university\Graphics\Assignment3\left.pgm';
 secondAddress =  'D:\Tel aviv university\Graphics\Assignment3\example.pgm';
 minGroup = 10;
-inlierTrashold = 1;
+inlierTrashold = 0.1;
 
 H=[1 .4 0; .1 1 0; 0.5 0.3 0.9];
 

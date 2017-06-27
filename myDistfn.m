@@ -15,6 +15,7 @@ matches = x';
  
     if(sqrt((T3(i,1)-T2(i,1))^2 + (T3(i,2)-T2(i,2))^2) < t)
        inliers(index) = i;
+       index = index + 1;
     end
  end
 
