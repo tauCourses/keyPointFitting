@@ -1,15 +1,16 @@
-firstAddress = 'D:\Tel aviv university\Graphics\Assignment3\left.pgm';
+firstAddress = 'D:\Tel aviv university\Graphics\Assignment3\city.pgm';
 secondAddress =  'D:\Tel aviv university\Graphics\Assignment3\example.pgm';
-minGroup = 10;
+minGroup = 4;
 inlierTrashold = 0.1;
+distRatio = 0.8;
 
-H=[1 .4 0; .1 1 0; 0.5 0.3 0.9];
+H=[1 .4 0; .3 1 0; 0.4 0.3 0.8];
 
 oriImg = imread(firstAddress);
 afterImg = ComputeProjective(oriImg, H);
 imwrite(afterImg, secondAddress);
 
-[num_of_matches matches distVals] = match(firstAddress,secondAddress, 0.68);
+[num_of_matches matches distVals] = match(firstAddress,secondAddress, distRatio);
 num_of_matches
 computedH = RANSAC_Wrapper(matches,@fittingfn,@myDistfn,@degenfn,minGroup,inlierTrashold,0,100,1000);
 
