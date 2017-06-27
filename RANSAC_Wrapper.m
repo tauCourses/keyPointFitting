@@ -1,6 +1,5 @@
 function [H_ransac] = RANSAC_Wrapper(matches, fittingfn,distfn, degenfn, s, t, feedback, maxDataTrials,maxTrials)
 
-
 %[T1,T2] = normalizePoints(matches);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%normalized$$$$$$$$
 T1 = matches(:,1:2) ;
@@ -37,9 +36,6 @@ tranAndNormalMatches(:,1:2) = T1(:,1:2);
 tranAndNormalMatches(:,3:4) = T2(:,1:2);
 tranAndNormalMatches = (tranAndNormalMatches)'; 
 
-%back to noraml:
-%tranAndNormalMatches = (matches)'; 
-%tranAndNormalMatches
 
 [H_ransac,inliners] = ransac(tranAndNormalMatches,fittingfn,distfn,degenfn, s, t, feedback, maxDataTrials,maxTrials);
 %T1normalize
@@ -48,3 +44,4 @@ tranAndNormalMatches = (tranAndNormalMatches)';
 %inv(T2normalize)
 H_ransac = (inv(T2normalize) * H_ransac * T1normalize)';
 %H_ransac
+
