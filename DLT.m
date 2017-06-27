@@ -15,7 +15,7 @@ averageLengthPoints2 = mean(sqrt(sum(abs(T2).^2,2)));
 T2scale = [sqrt(2)/averageLengthPoints2,0,0; 0,sqrt(2)/averageLengthPoints2,0; 0,0,1]';
 T2normalize = T2scale*T2translate;
 T2 = (T2normalize*T2')';
- 
+
 for i = 1:size(matches,1)
     start = 2*i - 1;
     A(start,1:3) = [0,0,0];  
